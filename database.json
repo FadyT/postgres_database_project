@@ -5,12 +5,5 @@
       "database": "shopping",
       "user": "postgres",
       "password": "password123"
-    },
-    "test": {
-      "driver": "pg",
-      "host": "localhost",
-      "database": "shopping",
-      "user": "postgres",
-      "password": "password123"
     }
-  }
+}
