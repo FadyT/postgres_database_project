@@ -11,7 +11,7 @@ export class productStore {
         try{
             
         const conn =await client.connect();
-        const sql = 'SELECT * FROM product'
+        const sql = 'SELECT * FROM products'
         const result =await conn.query(sql);
         conn.release();
 

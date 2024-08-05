@@ -1,19 +1,14 @@
 import express, { Request, Response } from 'express'
 import bodyParser from 'body-parser'
-import { product } from './Model/product';
-import cors from 'cors';
+import { product } from './Model/product'
+import productRoutes from './Handler/productsRoutes'
+import cors from 'cors'
 
-/*
-const bodyParser = require('body-parser');
-const express = require('express');
-const product  = require('../src/Model/product')
-const cors = require('cors')
-const app = express();
-*/
-//const address: string = "0.0.0.0:3000";
+
 const app = express();
 app.use(bodyParser.json())
-const port = process.env.PORT || 3000;
+productRoutes(app)
+const address:string ="0.0.0.0:3000" //process.env.PORT || 3000;
 
 /* Adding Cors to the website */
 const corsOptions ={
@@ -28,13 +23,15 @@ app.get('/', (req, res) => {
   });
   
 
-  app.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}`);
+  app.listen(3000, () => {
+    console.log(`Server running at ${address}`);
   });
 
+  
+/*
 app.get('/products', (req , res) => {
     try {
-        res.send('this is the INDEX route')
+        res.send('this is the INDEX route' )
     } catch (err) {
         res.status(400)
         res.json(err)
@@ -86,3 +83,4 @@ app.delete('/product/:id', (_req: Request, res: Response) => {
        res.json(err)
     }
 })
+*/
