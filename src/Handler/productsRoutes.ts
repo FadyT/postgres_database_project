@@ -9,6 +9,7 @@ const index = async (_req: Request, res: Response) => {
 }
 
 const show = async (req: Request, res: Response) => {
+    console.log("received request for id :::: " + req.params.id);
    const product = await store.show(req.params.id)
    res.json(product)
 }
@@ -16,7 +17,6 @@ const show = async (req: Request, res: Response) => {
 const create = async (req: Request, res: Response) => {
     try {
         const product: product = {
-            id: req.body.id,
             name: req.body.name,
             price: req.body.price,
         }
@@ -30,7 +30,7 @@ const create = async (req: Request, res: Response) => {
 }
 
 const destroy = async (req: Request, res: Response) => {
-    const deleted = await store.delete(req.body.id)
+    const deleted = await store.delete(req.params.id)
     res.json(deleted)
 }
 

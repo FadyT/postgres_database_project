@@ -1,7 +1,6 @@
 import client from "../database";
 
 export type product = {
-    id:Number;
     name:String;
     price:Number;
 }
@@ -25,9 +24,9 @@ export class productStore {
     
       async show(id: string): Promise<product> {
         try {
-        const sql = 'SELECT * FROM product WHERE id=($1)'
+        const sql = 'SELECT * FROM products WHERE id=($1)'
         // @ts-ignore
-        const conn = await Client.connect()
+        const conn = await client.connect()
     
         const result = await conn.query(sql, [id])
     
@@ -41,9 +40,10 @@ export class productStore {
     
       async create(b: product): Promise<product> {
           try {
-        const sql = 'INSERT INTO product (name, price) VALUES($1, $2) RETURNING *'
+            console.log(`trying to create product with data ${b.name}${b.price}`)
+        const sql = 'INSERT INTO products (name, price) VALUES($1, $2) RETURNING *'
         // @ts-ignore
-        const conn = await Client.connect()
+        const conn = await client.connect()
     
         const result = await conn
             .query(sql, [b.name, b.price])
@@ -60,9 +60,10 @@ export class productStore {
     
       async delete(id: string): Promise<product> {
           try {
-        const sql = 'DELETE FROM product WHERE id=($1)'
+        const sql = 'DELETE FROM products WHERE id=($1)'
+        console.log("trying to delete " + id)
         // @ts-ignore
-        const conn = await Client.connect()
+        const conn = await client.connect()
     
         const result = await conn.query(sql, [id])
     
