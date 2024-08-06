@@ -1,4 +1,4 @@
-import client from "../database";
+import {client} from "../database";
 
 export type order = {
     productsID:Number;
@@ -8,7 +8,7 @@ export type order = {
 }
 
 
-export class ordersList {
+export class OrdersList {
     async index():Promise<order[]> {
         try{
             

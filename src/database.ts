@@ -4,18 +4,16 @@ import { Pool } from 'pg'
 
 dotenv.config();
 
-const{
-    HOST ,
-    DB,
-    USER,
-    PASSWORD,
-} = process.env
+const envData = process.env
 
 const client = new Pool({
-    host:HOST,
-    database:DB,
-    user:USER,
-    password:PASSWORD
+    host: envData.HOST,
+    database: envData.DB,
+    user: envData.USER,
+    password: envData.PASSWORD
 })
 
-export default client;
+export {
+    client,
+    envData
+}
