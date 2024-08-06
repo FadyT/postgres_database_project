@@ -1,5 +1,6 @@
 import express, { Request, Response } from 'express'
 import { product, productStore } from '../Model/product'
+import jwt from 'jsonwebtoken'
 
 const store = new productStore()
 
@@ -14,6 +15,17 @@ const show = async (req: Request, res: Response) => {
    res.json(product)
 }
 
+
+const verifyAuthToken = (req: Request , res : Response , next:any ) =>{
+    try{
+        const authHeader = req.headers.authorization
+        const token = authHeader?.split(' ')[1]
+        const decoded = jwt.verify(`${token}`, `${process.env.TOKEN_SECRET}`)
+        next()
+    }catch{
+        res.status(401);
+    }
+}
 const create = async (req: Request, res: Response) => {
     try {
         const product: product = {
@@ -29,16 +41,11 @@ const create = async (req: Request, res: Response) => {
     }
 }
 
-const destroy = async (req: Request, res: Response) => {
-    const deleted = await store.delete(req.params.id)
-    res.json(deleted)
-}
 
 const productRoutes = (app: express.Application) => {
   app.get('/product', index)
   app.get('/product/:id', show)
-  app.post('/product', create)
-  app.delete('/product/:id', destroy)
+  app.post('/product',verifyAuthToken, create)
 }
 
 export default productRoutes

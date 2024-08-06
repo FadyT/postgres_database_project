@@ -9,12 +9,12 @@ const index = async (_req: Request, res: Response) => {
   const user = await UsersList.index()
   res.json(user)
 }
-/*
+
 const show = async (req: Request, res: Response) => {
     console.log("received request for id :::: " + req.params.id);
    const user = await UsersList.show(req.params.id)
    res.json(user)
-}*/
+}
 
 const verifyAuthToken = (req: Request , res : Response , next:any ) =>{
     try{
@@ -44,16 +44,10 @@ const create = async (req: Request, res: Response) => {
     }
 }
 
-const destroy = async (req: Request, res: Response) => {
-    const deleted = await UsersList.delete(req.params.id)
-    res.json(deleted)
-}
-
 const userRoutes = (app: express.Application) => {
   app.get('/user', index)
-  //app.get('/user/:id',verifyAuthToken, show)
+  app.get('/user/:id',verifyAuthToken, show)
   app.post('/user',verifyAuthToken, create)
-  app.delete('/user/:id',verifyAuthToken, destroy)
 }
 
 export default userRoutes

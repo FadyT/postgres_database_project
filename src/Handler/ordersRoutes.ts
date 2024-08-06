@@ -31,16 +31,10 @@ const create = async (req: Request, res: Response) => {
     }
 }
 
-const destroy = async (req: Request, res: Response) => {
-    const deleted = await ordersList.delete(req.params.id)
-    res.json(deleted)
-}
-
 const orderRoutes = (app: express.Application) => {
   app.get('/order', index)
   app.get('/order/:id', show)
   app.post('/order', create)
-  app.delete('/order/:id', destroy)
 }
 
 export default orderRoutes
