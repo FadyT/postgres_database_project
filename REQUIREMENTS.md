@@ -1,0 +1,54 @@
+# API Requirements
+The company stakeholders want to create an online storefront to showcase their great product ideas. Users need to be able to browse an index of all products, see the specifics of a single product, and add products to an order that they can view in a cart page. You have been tasked with building the API that will support this application, and your coworker is building the frontend.
+
+These are the notes from a meeting with the frontend developer that describe what endpoints the API needs to supply, as well as data shapes the frontend and backend have agreed meet the requirements of the application. 
+
+## API Endpoints
+#### Products
+
+- Get all products from the database
+  app.get('/product', index)
+- Get specific product with id 
+  app.get('/product/:id', show)
+- Add new product to the products table if token is correct
+  app.post('/product',verifyAuthToken, create)
+
+#### Users
+
+- Get all Users if token is valid 
+  app.get('/user', index)
+- Get user with specified ID if token is valid
+  app.get('/user/:id',verifyAuthToken, show)
+- Create user if the token is valid
+  app.post('/user',verifyAuthToken, create)
+
+#### Orders
+
+- Show all orders
+  app.get('/order', index)
+- Show order of specific id
+  app.get('/order/:id', show)
+- Create order with the details added in request body
+  app.post('/order', create)
+- Add product to order in order_products table with the details added in request body
+  app.post('/order/:id/product', addProduct)
+  
+## Tables Data Shapes
+#### Products Table
+- id (SERIAL PRIMARY KEY)
+- name (VARCHAR(150))
+- price (float)
+
+#### Users Table
+- id (SERIAL PRIMARY KEY)
+- firstName (VARCHAR(150))
+- lastName (VARCHAR(150))
+- password (VARCHAR(100))
+
+#### Orders Table
+
+- id (SERIAL PRIMARY KEY)
+- id of each product in the order (integer)
+- quantity of each product in the order (integer)
+- user_id (integer)
+- status of order (active or complete) (VARCHAR(150))

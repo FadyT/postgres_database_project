@@ -45,7 +45,7 @@ const create = async (req: Request, res: Response) => {
 }
 
 const userRoutes = (app: express.Application) => {
-  app.get('/user', index)
+  app.get('/user',verifyAuthToken, index)
   app.get('/user/:id',verifyAuthToken, show)
   app.post('/user',verifyAuthToken, create)
 }
