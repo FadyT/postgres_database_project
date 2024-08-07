@@ -13,6 +13,17 @@ const show = async (req: Request, res: Response) => {
    const order = await ordersList.show(req.params.id)
    res.json(order)
 }
+const addProduct = async (req: Request, res: Response) => {
+    console.log("received request for id :::: " + req.params.id);
+    try{
+
+        const order = await ordersList.addProductToOrder(parseInt(req.body.quantity) ,req.params.id, req.body.productID)
+        res.json(order)
+    }catch(e){
+        res.status(400);
+        res.json(e);
+    }
+}
 
 const create = async (req: Request, res: Response) => {
     try {
@@ -35,6 +46,8 @@ const orderRoutes = (app: express.Application) => {
   app.get('/order', index)
   app.get('/order/:id', show)
   app.post('/order', create)
+  //add product to order
+  app.post('/order/:id/product', addProduct)
 }
 
 export default orderRoutes
