@@ -46,7 +46,6 @@ handelers are separated in src/handler folder to handel any route requested by t
 
 JWT is used in src/Handler/userRoutes to return token for user when he create a new user and used also for the middle ware that check the token to make sure user is authorized to make the request .
 
-
 **NOTE** 
 server is running on port:3000 
 
@@ -59,11 +58,14 @@ Database
 
 ### Env Variables
 
-HOST= localhost
-PORT = 5432
-DB= shopping
-USER= postgres
-PASSWORD= password123
-BYCRYPT_PASSWORD = dont-steal-my-password
-SALT_ROUNDS =  10
-TOKEN_SECRET = secret
+
+-    HOST= localhost
+-    PORT = 5432
+-    DB= shopping
+-    TEST_DB= test
+-    USER= postgres
+-    PASSWORD= password123
+-    ENV = dev 
+-    BYCRYPT_PASSWORD = dont-steal-my-password
+-    SALT_ROUNDS =  10
+-    TOKEN_SECRET = secret

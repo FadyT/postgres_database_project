@@ -6,14 +6,25 @@ import { envData } from '../database'
 const UsersList = new usersList()
 
 const index = async (_req: Request, res: Response) => {
-  const user = await UsersList.index()
-  res.json(user)
+    try{
+        const user = await UsersList.index()
+        res.json(user)
+    }catch(e){
+        res.status(500);
+        console.log("error getting users data from database ");
+    }
 }
 
 const show = async (req: Request, res: Response) => {
+    try{
     console.log("received request for id :::: " + req.params.id);
    const user = await UsersList.show(req.params.id)
    res.json(user)
+   
+}catch(e){
+    res.status(500);
+    console.log("error getting users data from database" );
+}
 }
 
 const verifyAuthToken = (req: Request , res : Response , next:any ) =>{
@@ -47,7 +58,7 @@ const create = async (req: Request, res: Response) => {
 const userRoutes = (app: express.Application) => {
   app.get('/user',verifyAuthToken, index)
   app.get('/user/:id',verifyAuthToken, show)
-  app.post('/user',verifyAuthToken, create)
+  app.post('/user', create)
 }
 
 export default userRoutes

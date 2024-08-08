@@ -71,7 +71,14 @@ npm install db-migrate -g
 #### Orders Table
 
 - id (SERIAL PRIMARY KEY)
-- id of each product in the order (integer)
-- quantity of each product in the order (integer)
+- productid (integer)
+- productquantity (integer)
 - user_id (integer)
-- status of order (active or complete) (VARCHAR(150))
+- orderstatus (VARCHAR(150))
+
+#### Order-products Table
+
+- id (SERIAL PRIMARY KEY)
+- quantity (integer)
+- order_id (bigint REFERENCES orders(id))
+- product_id (bigint REFERENCES orders(id))
