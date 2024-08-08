@@ -3,6 +3,29 @@ The company stakeholders want to create an online storefront to showcase their g
 
 These are the notes from a meeting with the frontend developer that describe what endpoints the API needs to supply, as well as data shapes the frontend and backend have agreed meet the requirements of the application. 
 
+### In a terminal tab, create and run the database:
+switch to the postgres user 
+# su postgres
+start psql 
+# psql postgres
+in psql run the following:
+
+# CREATE USER shopping_user WITH PASSWORD 'password123';
+# CREATE DATABASE shopping;
+# \c shopping
+# GRANT ALL PRIVILEGES ON DATABASE shopping TO shopping_user;
+to test that it is working run 
+# \dt 
+and it should output "No relations found."
+
+In the 2nd terminal:
+
+# install yarn 
+npm install yarn -g
+# install db-migrate on the machine for terminal commands 
+npm install db-migrate -g
+# check node version node -v - it needs to be 10 or 12 level
+
 ## API Endpoints
 #### Products
 

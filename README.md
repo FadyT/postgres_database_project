@@ -57,3 +57,13 @@ Database
 - user : postgres
 - password = password123
 
+### Env Variables
+
+HOST= localhost
+PORT = 5432
+DB= shopping
+USER= postgres
+PASSWORD= password123
+BYCRYPT_PASSWORD = dont-steal-my-password
+SALT_ROUNDS =  10
+TOKEN_SECRET = secret
