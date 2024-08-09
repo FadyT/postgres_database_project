@@ -81,13 +81,13 @@ export class OrdersList {
       async create(b: order): Promise<order> {
           try {
             console.log(`trying to create order with data ${b.productsID}${b.quantity}${b.UserID}${b.status} `)
-        const sql = 'INSERT INTO orders (productsID, quantity , UserID, status) VALUES($1, $2 , $3 , $4) RETURNING *'
+        const sql = 'INSERT INTO orders (productID, quantity , UserID, status) VALUES($1, $2 , $3 , $4) RETURNING *'
         // @ts-ignore
         const conn = await client.connect()
     
         const result = await conn
             .query(sql, [b.productsID, b.quantity , b.UserID , b.status])
-    
+        console.log(`connection is ${conn} and sql result is ${result}`)
         const order = result.rows[0]
     
         conn.release()

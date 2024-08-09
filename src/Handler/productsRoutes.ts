@@ -22,7 +22,7 @@ const show = async (req: Request, res: Response) => {
         res.json(product)
     }catch(e){
         res.status(500);
-        console.log("error geting product from database ")
+        console.log(`error geting product from database ${e}`)
     }
 }
 
