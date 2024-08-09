@@ -9,8 +9,8 @@
     "test": {
       "driver": "pg",
       "host": "localhost",
-      "database": "shopping_test",
-      "user": "postgres_test",
+      "database": "test",
+      "user": "postgres",
       "password": "password123"
     }
 }
