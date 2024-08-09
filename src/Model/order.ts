@@ -1,10 +1,10 @@
 import {client} from "../database";
 
 export type order = {
-    productsID:Number;
-    quantity:Number;
-    UserID:Number;
-    status:String;
+  productid:Number;
+  productquantity:Number;
+  user_id:Number;
+  orderstatus:String;
 }
 
 
@@ -80,13 +80,13 @@ export class OrdersList {
 
       async create(b: order): Promise<order> {
           try {
-            console.log(`trying to create order with data ${b.productsID}${b.quantity}${b.UserID}${b.status} `)
+            console.log(`trying to create order with data ${b.productid}${b.productquantity}${b.user_id}${b.orderstatus} `)
         const sql = 'INSERT INTO orders (productid, productquantity , user_id, orderstatus) VALUES($1, $2 , $3 , $4) RETURNING *'
         // @ts-ignore
         const conn = await client.connect()
     
         const result = await conn
-            .query(sql, [b.productsID, b.quantity , b.UserID , b.status])
+            .query(sql, [b.productid, b.productquantity , b.user_id , b.orderstatus])
         console.log(`connection is ${conn} and sql result is ${result}`)
         const order = result.rows[0]
     
@@ -94,7 +94,7 @@ export class OrdersList {
     
         return order
           } catch (err) {
-              throw new Error(`Could not add new order ${b.productsID}. Error: ${err}`)
+              throw new Error(`Could not add new order ${b.productid}. Error: ${err}`)
           }
       }
     

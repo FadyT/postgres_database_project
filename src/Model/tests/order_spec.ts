@@ -27,36 +27,36 @@ describe("product Model", () => {
 
   it('create method should add order', async () => {
     const result = await store.create({
-      productsID:1 , 
-      quantity : 2,
-      UserID : 1,
-      status:'Active'
+      productid:1 , 
+      productquantity : 2,
+      user_id : 1,
+      orderstatus:'Active'
     });
     expect(result).toEqual({
-      productsID:1 , 
-      quantity : 2,
-      UserID : 1,
-      status:'Active'
+      productid:1 , 
+      productquantity : 2,
+      user_id : 1,
+      orderstatus:'Active'
     });
   });
 
   it('index method should return a list of orders', async () => {
     const result = await store.index();
     expect(result).toEqual([{
-      productsID:1 , 
-      quantity : 2,
-      UserID : 1,
-      status:'Active'
+      productid:1 , 
+      productquantity : 2,
+      user_id : 1,
+      orderstatus:'Active'
     }]);
   });
 
   it('show method should return the correct order', async () => {
     const result = await store.show("1");
     expect(result).toEqual({
-      productsID:1 , 
-      quantity : 2,
-      UserID : 1,
-      status:'Active'
+      productid:1 , 
+      productquantity : 2,
+      user_id : 1,
+      orderstatus:'Active'
     });
   });
 

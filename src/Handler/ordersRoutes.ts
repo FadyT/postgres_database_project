@@ -45,10 +45,10 @@ const addProduct = async (req: Request, res: Response) => {
 const create = async (req: Request, res: Response) => {
     try {
         const order: order = {
-            productsID : req.body.productsID,
-            quantity: req.body.quantity,
-            UserID: req.body.UserID,
-            status: req.body.status,
+            productid : req.body.productid,
+            productquantity: req.body.productquantity,
+            user_id: req.body.user_id,
+            orderstatus: req.body.orderstatus,
         }
 
         const neworder = await ordersList.create(order)
